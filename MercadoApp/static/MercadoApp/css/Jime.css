@@ -1,0 +1,12 @@
+.navText{
+    color: white !important;
+}
+
+.contenido{
+    margin-top: 100px !important;
+    padding: 10px;
+}
+
+.componenteEntregables{
+    background-color: thistle;
+}
