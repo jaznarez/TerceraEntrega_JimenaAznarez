@@ -1,3 +1,7 @@
+body{
+    background-color: aquamarine !important;
+}
+
 .navText{
     color: white !important;
 }
@@ -8,5 +12,6 @@
 }
 
 .componenteEntregables{
-    background-color: thistle;
+    background-color: aquamarine;
 }
+

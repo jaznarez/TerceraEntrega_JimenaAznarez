@@ -1,12 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=Cl, initial-scale=1.0">
-    <title>Cliente|MercadoApp</title>
-</head>
-<body>
+<div>
+    {% extends "MercadoApp/inicio.html" %}
+    {% load static %}
     
-</body>
-</html>
+        {% block contenidoQueCambia %}
+        <div class="componenteEntregables">
+            <p>Hola soy un Cliente</p>
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Nombre Cliente</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Editar</a>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+</div>
