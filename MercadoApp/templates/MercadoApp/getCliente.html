@@ -1,0 +1,20 @@
+<div>
+    {% extends "MercadoApp/Cliente.html" %}
+    {% load static %}
+
+        {% block getCliente %}
+            <p>Consultar Cliente</p>
+            <form action="/MercadoApp/buscarCliente/" method="GET">
+                <input placeholder="Nombre" type="text" name="nombre" id="nombre">
+                <input type="submit" value="Buscar">
+            </form>
+
+            {% if cliente %}
+                {% for i in cliente %}
+                    <li> {{i.nombre}} </li>
+                    <li> {{i.apellido}} </li>
+                    <li> {{i.email}} </li>
+                {% endfor %}
+            {% endif %}
+        {% endblock %}
+</div>
