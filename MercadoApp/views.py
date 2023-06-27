@@ -6,7 +6,7 @@ from MercadoApp.forms import formClienteFormulario
 def inicio(request):
     return render(request, "MercadoApp/inicio.html")      
 
-def Cliente(request):
+def cliente(request):
     return render(request, "MercadoApp/Cliente.html")#tenemos que poner la ruta de donde estamos hasta llegar a Clientes
                                                      #render como tal está hecho para buscar en la carpeta templates (si usamos render, hay que usar carpeta templates)
 def Productos(request):
@@ -21,13 +21,18 @@ def clienteFormulario(request):
         print(miFormulario)
         if miFormulario.is_valid:
             data = miFormulario.cleaned_data
-            cliente = Cliente(nombre=data["nombre"], apellido=data["apellido"],email=data["email"],telefono=data["telefono"],edad=data["edad"])
+            nombre=data["nombre"]
+            apellido=data["apellido"]
+            email=data["email"]
+            telefono=data["telefono"]
+            edad=data["edad"]
+            cliente = Cliente(nombre=nombre, apellido=apellido,email=email,telefono=telefono,edad=edad)
             cliente.save()
             return render(request, "MercadoApp/inicio.html")
     else:
         miFormulario = formClienteFormulario()
 
-    return render(request, "MercadoApp/clienteFormulario.html", {"miFormulario":miFormulario})
+    return render(request, "MercadoApp/clienteFormulario.html", {"miFormulario":miFormulario})#uso un diccionario para crear la variable que necesita clienteForumulario para crear el form para renderizar la pantalla.
 
 
     """if request.method =="POST":#metodo POST se relaciona a un forumlario que se genera

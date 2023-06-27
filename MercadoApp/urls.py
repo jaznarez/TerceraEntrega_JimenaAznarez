@@ -1,9 +1,9 @@
 from django.urls import path, include 
-from MercadoApp.views import inicio, Cliente, Productos, Pedidos, clienteFormulario, getCliente, buscarCliente
+from MercadoApp.views import inicio, cliente, Productos, Pedidos, clienteFormulario, getCliente, buscarCliente
 
 urlpatterns = [
     path("inicio/", inicio),
-    path("Cliente/", Cliente, name="Cliente"),
+    path("cliente/", cliente, name="Cliente"),
     path("Productos/", Productos, name="Productos"),
     path("Pedidos/", Pedidos, name="Pedidos"),
     path("clienteFormulario/", clienteFormulario, name="clienteFormulario"),
