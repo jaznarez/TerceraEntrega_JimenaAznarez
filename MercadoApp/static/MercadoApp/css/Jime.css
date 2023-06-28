@@ -15,3 +15,8 @@ body{
     background-color: aquamarine;
 }
 
+.card-image{
+    background-position: center;
+    text-align: center !important;
+
+}

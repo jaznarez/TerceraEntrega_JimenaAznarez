@@ -1,16 +1,23 @@
 <div>
     {% extends "MercadoApp/inicio.html" %}
     {% load static %}
+        <!--div>
+        <p>Si aún no estás registrado, regístrate</p>
+        <input type = "submit" value="Registro">   
+        <p>Si ya estás registrado inicia con tu email</p>
+        <input type = "submit" value="Inicio"> 
+        </div-->    
     
         {% block contenidoQueCambia %}
             <div class="formClienteFormulario">
             <p></p>
                 {% block clienteFormulario %}
-                {% endblock %}
-            
+                {% endblock %} 
             </div>
+            
             <div class="formGetCliente">
                 <p></p>
+                
                 {% block getCliente %}
                 {% endblock %}
             </div>

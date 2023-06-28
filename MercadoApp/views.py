@@ -45,9 +45,9 @@ def getCliente(request):
     return render(request, "MercadoApp/getCliente.html")
 
 def buscarCliente(request):
-    if request.GET["nombre"]:
-        nombre = request.GET["nombre"]
-        cliente = Cliente.objects.filter(nombre = nombre)
+    if request.GET["email"]:
+        email = request.GET["email"]
+        cliente = Cliente.objects.filter(email = email)
         return render(request, "MercadoApp/getCliente.html", {"cliente": cliente})
     else:
         respuesta ="No se enviaron datos"

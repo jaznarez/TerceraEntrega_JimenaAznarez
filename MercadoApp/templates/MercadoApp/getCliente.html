@@ -5,7 +5,7 @@
         {% block getCliente %}
             <p>Consultar Cliente</p>
             <form action="/MercadoApp/buscarCliente/" method="GET">
-                <input placeholder="Nombre" type="text" name="nombre" id="nombre">
+                <input placeholder="Email" type="text" name="email" id="email">
                 <input type="submit" value="Buscar">
             </form>
 
@@ -14,6 +14,7 @@
                     <li> {{i.nombre}} </li>
                     <li> {{i.apellido}} </li>
                     <li> {{i.email}} </li>
+                    <li> {{i.telefono}}</li>
                 {% endfor %}
             {% endif %}
         {% endblock %}
