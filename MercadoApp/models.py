@@ -6,6 +6,8 @@ class Cliente(models.Model):
     email = models.EmailField()
     telefono = models.IntegerField()
     edad = models.IntegerField()
+    def __str__(self):
+        return(f"nombre: {self.nombre} - apellido: {self.apellido} - email: {self.email} - telefono: {self.telefono} - edad: {self.edad}")
 
 class Productos(models.Model):
     categoria = models.IntegerField()
