@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'MercadoApp/css/Jime.css'%}" rel="stylesheet"/>
+    <link href="{% static 'MercadoApp/css/bootstrap.min.css'%}" rel="stylesheet"/>
+    <title>Login Mercado Online</title>
+</head>
+<body>
+    <div class="containerForm"> 
+        <form action="" method="POST" class="formLogin"> {% csrf_token %}
+            <h3 style="color: white; font-weight: bold; margin-bottom:30px; display: flex; justify-content:center; align-items:center;">LOGIN MERCADO ONLINE</h3>
+            <div> <!--div ocupa todo el ancho del espacio que estoy trabajando-->
+                <input name="user" type="text" placeholder="User" class="inputLogin">
+            </div>
+            <div>
+                <input name="password" type="password" placeholder="Password" class="inputLogin">
+            </div>
+            <div>
+                <button class="btn btn-primary" type="submit">Login</button>
+            </div>
+            {% if error %}
+                <p style="color: red;">{{error}}</p>
+            {% endif %}
+            <p>Aun no tienes una cuenta? <a href="/MercadoApp/registro/">Registrate</a></p>
+        </form>
+    </div>
+</body>
+</html>

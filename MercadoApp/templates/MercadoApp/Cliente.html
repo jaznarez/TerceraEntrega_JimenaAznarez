@@ -10,7 +10,16 @@
     
         {% block contenidoQueCambia %}
             <div class="formClienteFormulario">
-            <p></p>
+            <p>Clientes Disponibles</p>
+            <table>
+                <tr id="tituloTablaClientes">
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Telefono</th>
+                    <th>Edad</th> 
+                </tr>
+            </table>
                 {% block clienteFormulario %}
                 {% endblock %} 
             </div>

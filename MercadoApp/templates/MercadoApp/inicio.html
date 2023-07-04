@@ -24,7 +24,8 @@
                     <li class="nav-item"><a class="nav-link navText" href="{% url 'Cliente' %}">Cliente</a></li>
                     <li class="nav-item"><a class="nav-link navText" href="{% url 'Pedidos' %}">Pedidos</a></li>
                     <li class="nav-item"><a class="nav-link navText" href="{% url 'Productos' %}">Productos</a></li>
-                    
+                    <li class="nav-item"><a class="nav-link navText" href="{% url 'perfil' %}">{{user.username}}</a></li>
+                    <li class="nav-item"><a class="nav-link navText" href="{% url 'Logout' %}">Logout</a></li>
                 </ul>
             </div>
         </div>

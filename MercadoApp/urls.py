@@ -1,5 +1,6 @@
 from django.urls import path, include 
-from MercadoApp.views import inicio, cliente, Productos, Pedidos, clienteFormulario, getCliente, buscarCliente
+from MercadoApp.views import *
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path("inicio/", inicio),
@@ -9,5 +10,10 @@ urlpatterns = [
     path("clienteFormulario/", clienteFormulario, name="clienteFormulario"),
     path("getCliente/", getCliente, name="getCliente"),
     path("buscarCliente/", buscarCliente, name="buscarCliente"),
-
+    path("login/", loginWeb, name="login"),
+    path("registro/", registro, name="registro"),
+    path("Logout/", LogoutView.as_view(template_name = "MercadoApp/login.html"), name="Logout"),
+    path("Perfil/", perfilview, name="perfil"),
+    path("/Perfil/editarPerfil/", editarPerfil, name="editarPerfil"),
+    path("/Perfil/changePassword/", changePassword, name="changePassword"),
 ]
