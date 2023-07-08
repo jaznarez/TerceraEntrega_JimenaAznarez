@@ -33,3 +33,6 @@ class ChangePasswordForm(PasswordChangeForm):
         model = User
         fields = ["old_password", "old_password1", "old_password"]
         help_texts = {k:"" for k in fields}
+
+class AvatarForm(forms.Form):
+    avatar = forms.ImageField()

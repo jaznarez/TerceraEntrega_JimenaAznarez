@@ -16,4 +16,7 @@ urlpatterns = [
     path("Perfil/", perfilview, name="perfil"),
     path("/Perfil/editarPerfil/", editarPerfil, name="editarPerfil"),
     path("/Perfil/changePassword/", changePassword, name="changePassword"),
+    path("eliminarCliente/<nombre_cliente>", eliminarCliente, name="eliminarCliente"),
+    path("editarCliente/<nombre_cliente>", editarCliente, name="editarCliente"),
+    path("Perfil/Avatar/", editAvatar, name="editAvatar"),
 ]

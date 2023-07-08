@@ -11,13 +11,32 @@
         {% block contenidoQueCambia %}
             <div class="formClienteFormulario">
             <p>Clientes Disponibles</p>
-            <table>
+            <table id="tableInfoClientes">
                 <tr id="tituloTablaClientes">
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Email</th>
                     <th>Telefono</th>
-                    <th>Edad</th> 
+                    <th>Edad</th>
+                    <th>Eliminar</th>
+                    <th>Editar</th>
+
+                </tr>
+                <tr>
+                    {% for cliente in Clientes %}
+                        <tr>
+                            <td>{{cliente.nombre}}</td>
+                            <td>{{cliente.apellido}}</td>
+                            <td>{{cliente.email}}</td>
+                            <td>{{cliente.telefono}}</td>
+                            <td>{{cliente.edad}}</td> 
+                            <td><button class="btn btn-danger btnEliminar"><a href="{% url 'eliminarCliente' cliente.nombre %}" >x</a></button>></td>
+                            <td><button class="btn btn-warning btnEditar"><a href="{% url 'editarCliente' cliente.nombre %}" >Editar</a></button>></td>
+                       
+                        </tr>
+                        
+                    {% endfor%}
+                    
                 </tr>
             </table>
                 {% block clienteFormulario %}
