@@ -14,9 +14,9 @@ urlpatterns = [
     path("registro/", registro, name="registro"),
     path("Logout/", LogoutView.as_view(template_name = "MercadoApp/login.html"), name="Logout"),
     path("Perfil/", perfilview, name="perfil"),
-    path("/Perfil/editarPerfil/", editarPerfil, name="editarPerfil"),
-    path("/Perfil/changePassword/", changePassword, name="changePassword"),
+    path("Perfil/editarPerfil/", editarPerfil, name="editarPerfil"),
+    path("Perfil/changePassword/", changePassword, name="changePassword"),
     path("eliminarCliente/<nombre_cliente>", eliminarCliente, name="eliminarCliente"),
     path("editarCliente/<nombre_cliente>", editarCliente, name="editarCliente"),
-    path("Perfil/Avatar/", editAvatar, name="editAvatar"),
+    path("Perfil/changeAvatar/", editAvatar, name="editAvatar"),
 ]

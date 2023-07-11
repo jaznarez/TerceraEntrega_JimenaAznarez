@@ -1,12 +1,14 @@
 from http.client import HTTPResponse
 from turtle import home
-from django.shortcuts import render
+from django.template import loader
+from django.shortcuts import render, redirect
 from MercadoApp.models import *
 from MercadoApp.forms import formClienteFormulario, UserEditForm, ChangePasswordForm, AvatarForm
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
 from django.contrib.auth.decorators import login_required #sirve para pedir el login obligatorio, si no la pagina no funciona. se escribe @login_required arriba de cada accion que querramos necesite login
 from django.contrib.auth.models import User
+
 
 
 @login_required
@@ -160,13 +162,13 @@ def editAvatar(request):
             except:
                 avatar = None
             return render(request, "MercadoApp/inicio.html", {"avatar": avatar})
-        else:
-            try:
-                avatar = Avatar.objects.filter(user = request.user.id)
-                form = AvatarForm()
-            except:
-                form = AvatarForm()
-        return render(request, "AgregarAvatar.html", {"form": form})
+    else:
+        try:
+            avatar = Avatar.objects.filter(user = request.user.id)
+            form = AvatarForm()
+        except:
+            form = AvatarForm()
+    return render(request, "MercadoApp/Perfil/avatar.html", {"form": form})
     
 def getavatar(request):
     avatar = Avatar.objects.filter(user=request.user.id) #filter, va a buscar algo especifico, va a traer el avatar que le pertenece a ese usuario
@@ -175,3 +177,5 @@ def getavatar(request):
     except:
         avatar = None
     return avatar
+
+#me da error al elegir la opcion Avatar, mirar clase playground avanzado III, la ultima parte
