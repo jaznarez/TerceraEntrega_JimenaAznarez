@@ -36,3 +36,9 @@ class ChangePasswordForm(PasswordChangeForm):
 
 class AvatarForm(forms.Form):
     avatar = forms.ImageField()
+
+class formPedidoFormulario(forms.Form):
+    producto = forms.CharField()
+    cantidad = forms.IntegerField()
+    fecha_entrega = forms.DateField()
+    

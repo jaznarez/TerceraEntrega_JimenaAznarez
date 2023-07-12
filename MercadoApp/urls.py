@@ -19,4 +19,5 @@ urlpatterns = [
     path("eliminarCliente/<nombre_cliente>", eliminarCliente, name="eliminarCliente"),
     path("editarCliente/<nombre_cliente>", editarCliente, name="editarCliente"),
     path("Perfil/changeAvatar/", editAvatar, name="editAvatar"),
+    
 ]

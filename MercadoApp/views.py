@@ -3,11 +3,12 @@ from turtle import home
 from django.template import loader
 from django.shortcuts import render, redirect
 from MercadoApp.models import *
-from MercadoApp.forms import formClienteFormulario, UserEditForm, ChangePasswordForm, AvatarForm
+from MercadoApp.forms import formClienteFormulario, UserEditForm, ChangePasswordForm, AvatarForm, formPedidoFormulario
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
 from django.contrib.auth.decorators import login_required #sirve para pedir el login obligatorio, si no la pagina no funciona. se escribe @login_required arriba de cada accion que querramos necesite login
 from django.contrib.auth.models import User
+
 
 
 
@@ -178,4 +179,20 @@ def getavatar(request):
         avatar = None
     return avatar
 
-#me da error al elegir la opcion Avatar, mirar clase playground avanzado III, la ultima parte
+#def getPedidos(request): #OJO! comenté la función Pedidos que está mas arriba
+#    pedido = Pedidos.objects.get()
+#    if request.method == "POST" :
+#        miFormulario = formPedidoFormulario(request.POST)
+#        if miFormulario.is_valid:
+#            data = miFormulario.cleaned_data
+#            pedido.nombre = data["nombre"]
+#            pedido.cantidad = data["cantidad"]
+#            pedido.fecha = data["fecha entrega"]
+#            pedido.save()
+#            miFormulario = formPedidoFormulario()
+#            Pedido = Pedidos.objects.all()
+#            return render(request, "MercadoApp/resumenPedidos.html", {"miFormulario":miFormulario, "Pedidos": Pedido})
+
+#    else:
+#        miFormulario = formPedidoFormulario()
+#    return render(request, "MercadoApp/Pedidos.html", {"miFormulario":miFormulario})

@@ -14,13 +14,16 @@ class Productos(models.Model):
     categoria = models.IntegerField()
     nombre = models.CharField(max_length=30)
     tipo = models.IntegerField()
+    cantidad = models.IntegerField()
 
 class Pedidos(models.Model):
     cliente = Cliente #se puede llamar a una clase??
-    producto = Productos
+    nombre_producto = models.CharField(max_length=30)
+    cantidad = models.IntegerField()
     fecha = models.DateField()
     preparado = models.BooleanField()
     entregado = models.BooleanField()
+
 
 class Avatar(models.Model):
     #vinculo con el usuario

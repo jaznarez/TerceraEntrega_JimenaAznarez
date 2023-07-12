@@ -4,13 +4,13 @@ usamos una API de django donde el formulario ya viene predeterminado-->
     {% extends "MercadoApp/Cliente.html" %}
     {% load static %}
 
-    {% block clienteFormulario %}
+        {% block clienteFormulario %}
     
-    <form action="/MercadoApp/editarCliente/{{nombre}}" method="post"> {% csrf_token %}
-        <table>
-            {{ miFormulario.as_table }}
-        </table>
-        <input class="btn btn-primary" type="submit" value="Enviar">
-    </form>
-    {% endblock %}
+        <form action="/MercadoApp/editarCliente/{{nombre}}" method="post"> {% csrf_token %}
+            <table>
+                {{ miFormulario.as_table }}
+            </table>
+            <input class="btn btn-primary" type="submit" value="Enviar">
+        </form>
+        {% endblock %}
 </div>

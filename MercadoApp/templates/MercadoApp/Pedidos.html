@@ -1,18 +1,14 @@
 <div>
     {% extends "MercadoApp/inicio.html" %}
     {% load static %}
+
+        {% block Pedidos %}
     
-        {% block contenidoQueCambia %}
-        <div class="componenteEntregables">
-            <p>Resumen del Pedido</p>
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Tú pedido de hoy</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Comprar</a>
-                </div>
-            </div>
-        </div>
+        <form action="/MercadoApp/Productos/{{nombre}}" method="post"> {% csrf_token %}
+            <table>
+                {{ miFormulario.as_table }}
+            </table>
+            <input class="btn btn-primary" type="submit" value="Enviar">
+        </form>
         {% endblock %}
 </div>
