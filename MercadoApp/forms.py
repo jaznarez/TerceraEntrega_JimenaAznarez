@@ -38,7 +38,9 @@ class AvatarForm(forms.Form):
     avatar = forms.ImageField()
 
 class formPedidoFormulario(forms.Form):
-    producto = forms.CharField()
+    numero_pedido = forms.IntegerField()
+    nombre_producto = forms.CharField()
+    categoria_producto = forms.CharField()
     cantidad = forms.IntegerField()
     fecha_entrega = forms.DateField()
-    
+

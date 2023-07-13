@@ -1,0 +1,16 @@
+<!--API django para el uso de un formulario, en vez de crear el formulario con placeholder como hicimos en clienteFormulario,
+usamos una API de django donde el formulario ya viene predeterminado-->
+<div>
+    {% extends "MercadoApp/Pedido.html" %}
+    {% load static %}
+
+        {% block pedidosFormulario %}
+    
+        <form action="/MercadoApp/editarPedido/{{numero_pedido}}" method="post"> {% csrf_token %}
+            <table>
+                {{ miFormulario.as_table }}
+            </table>
+            <input class="btn btn-primary" type="submit" value="Enviar">
+        </form>
+        {% endblock %}
+</div>

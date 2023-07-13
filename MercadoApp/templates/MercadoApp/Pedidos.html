@@ -1,14 +1,52 @@
 <div>
     {% extends "MercadoApp/inicio.html" %}
     {% load static %}
-
-        {% block Pedidos %}
+        <!--div>
+        <p>Si aún no estás registrado, regístrate</p>
+        <input type = "submit" value="Registro">   
+        <p>Si ya estás registrado inicia con tu email</p>
+        <input type = "submit" value="Inicio"> 
+        </div-->    
     
-        <form action="/MercadoApp/Productos/{{nombre}}" method="post"> {% csrf_token %}
-            <table>
-                {{ miFormulario.as_table }}
+        {% block contenidoQueCambia %}
+            
+            <p>Pedidos</p>
+            <table id="tableInfoPedidos">
+                <tr id="tituloTablaPedidos">
+                    <th>Numero Pedido</th>
+                    <th>Producto</th>
+                    <th>Categoria</th>
+                    <th>Cantidad</th>
+                    <th>Fecha Entrega</th>
+                    <th>Eliminar</th>
+                    <th>Editar</th>
+
+                </tr>
+                <tr>
+                    {% for pedido in Pedidos %}
+                        <tr>
+                            <td>{{pedido.numero_pedido}}</td>
+                            <td>{{pedido.nombre_producto}}</td>
+                            <td>{{pedido.categoria_producto}}</td>
+                            <td>{{pedido.cantidad}}</td>
+                            <td>{{pedido.fecha_entrega}}</td> 
+                            <td><button class="btn btn-danger btnEliminar"><a href="{% url 'eliminarPedido' pedido.numero_pedido %}" >x</a></button>></td>
+                            <td><button class="btn btn-warning btnEditar"><a href="{% url 'editarPedido' pedido.numero_pedido %}" >Editar</a></button>></td>
+                       
+                        </tr>
+                        
+                    {% endfor%}
+                    
+                </tr>
             </table>
-            <input class="btn btn-primary" type="submit" value="Enviar">
-        </form>
+            <div class="formPedidoFormulario">
+                {% block pedidosFormulario %}
+                {% endblock %} 
+            </div>
+            
+            <div class="formGetPedido">
+                {% block getPedido %}
+                {% endblock %}
+            </div>
         {% endblock %}
 </div>

@@ -17,10 +17,11 @@ class Productos(models.Model):
     cantidad = models.IntegerField()
 
 class Pedidos(models.Model):
-    cliente = Cliente #se puede llamar a una clase??
-    nombre_producto = models.CharField(max_length=30)
+    numero_pedido = models.IntegerField()
+    nombre_producto = models.CharField(max_length=50)
+    categoria_producto = models.CharField(max_length=50)
     cantidad = models.IntegerField()
-    fecha = models.DateField()
+    fecha_entrega = models.DateField()
     preparado = models.BooleanField()
     entregado = models.BooleanField()
 

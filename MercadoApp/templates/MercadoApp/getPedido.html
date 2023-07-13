@@ -1,0 +1,21 @@
+<div>
+    {% extends "MercadoApp/Pedidos.html" %}
+    {% load static %}
+
+        {% block getPedido %}
+            <p>Consultar Pedido</p>
+            <form action="/MercadoApp/buscarPedido/" method="GET">
+                <input placeholder="Numero Pedido" type="text" name="numero_pedido" id="numero_pedido">
+                <input type="submit" value="Buscar">
+            </form>
+
+            {% if pedido %}
+                {% for i in Pedido %}
+                    <li> {{i.numero_pedido}} </li>
+                    <li> {{i.nombre_producto}} </li>
+                    <li> {{i.categoria_producto}} </li>
+                    <li> {{i.cantidad}}</li>
+                {% endfor %}
+            {% endif %}
+        {% endblock %}
+</div>

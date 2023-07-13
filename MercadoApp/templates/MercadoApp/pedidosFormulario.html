@@ -1,0 +1,21 @@
+<div>
+    {% extends "MercadoApp/Pedidos.html" %}
+    {% load static %}
+
+        {% block pedidosFormulario %}
+        
+        <form action="/MercadoApp/pedidosFormulario/" method="post"> {% csrf_token %}
+            <!--table>
+                {{ miFormulario.as_table }}
+            </table-->
+            <input placeholder="Numero Pedido" type = "text" name="numero_pedido" required>
+            <input placeholder="Producto" type = "text" name="nombre_producto" required>
+            <input placeholder="Categoria" type = "text" name="categoria_producto" required>
+            <input placeholder="Cantidad" type = "number" name="cantidad" required>
+            <input placeholder="Fecha Entrega" type = "date" name="fecha_entrega">
+
+            <input class="btn btn-primary" type = "submit" value="Enviar">
+        </form>   
+    
+        {% endblock %}
+</div>
