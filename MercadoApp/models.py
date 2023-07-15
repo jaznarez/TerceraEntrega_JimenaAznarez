@@ -22,8 +22,8 @@ class Pedidos(models.Model):
     categoria_producto = models.CharField(max_length=50)
     cantidad = models.IntegerField()
     fecha_entrega = models.DateField()
-    preparado = models.BooleanField()
-    entregado = models.BooleanField()
+    #preparado = models.BooleanField()
+    #entregado = models.BooleanField()
 
 
 class Avatar(models.Model):

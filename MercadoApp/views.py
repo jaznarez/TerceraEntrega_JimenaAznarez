@@ -10,13 +10,10 @@ from django.contrib.auth.decorators import login_required #sirve para pedir el l
 from django.contrib.auth.models import User
 
 
-
-
 @login_required
 def inicio(request):
     avatar = getavatar(request)
     return render(request, "MercadoApp/inicio.html", {"avatar":avatar}) #mandamos el avatar en manera de diccionario para poder acceder en la web   
-
 
 def cliente(request):
     Clientes = Cliente.objects.all() #pido toda la informacion que tenga Cliente alojada en su base de datos
@@ -102,7 +99,7 @@ def editarCliente(request, nombre_cliente):
     return render(request, "MercadoApp/editarCliente.html", {"miFormulario":miFormulario})
 
 def eliminarPedido(request, numero_pedido):
-    pedido = Pedidos.objects.get(numero=numero_pedido)
+    pedido = Pedidos.objects.get(numero_pedido=numero_pedido)
     pedido.delete()
     miFormulario = formPedidoFormulario()
     Pedido = Pedidos.objects.all()
