@@ -10,7 +10,8 @@ usamos una API de django donde el formulario ya viene predeterminado-->
             <table>
                 {{ miFormulario.as_table }}
             </table>
-            <input class="btn btn-primary" type="submit" value="Enviar">
+            <input class="btn btn-primary" type="submit" value="Enviar"><a href="{% url 'clienteFormulario' cliente.nombre %}">
+            
         </form>
         {% endblock %}
 </div>

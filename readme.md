@@ -30,3 +30,5 @@ En la capeta llamada Imagenes se encuentran las capturas de pantalla de las prue
 
 11. http://127.0.0.1:8000/admin/ permite el acceso a la administración del sitio.
 
+Cuando quiero agregar un nuevo pedido, me desaparecen los pedidos anteriores.
+Cuando voy a editar clientes o pedidos, queda el titulo de la url anterior.

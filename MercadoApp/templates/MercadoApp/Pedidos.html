@@ -9,7 +9,7 @@
         </div-->    
     
         {% block contenidoQueCambia %}
-            
+            <div class="formPedidoFormulario">
             <p>Pedidos</p>
             <table id="tableInfoPedidos">
                 <tr id="tituloTablaPedidos">
@@ -29,21 +29,22 @@
                             <td>{{pedido.categoria_producto}}</td>
                             <td>{{pedido.cantidad}}</td>
                             <td>{{pedido.fecha_entrega}}</td> 
-                            <td><button class="btn btn-danger btnEliminar"><a href="{% url 'eliminarPedido' pedido.numero_pedido %}" >x</a></button>></td>
-                            <td><button class="btn btn-warning btnEditar"><a href="{% url 'editarPedido' pedido.numero_pedido %}" >Editar</a></button>></td>
-                       
+                            <td><button class="btn btn-danger btnEliminar"><a href="{% url 'eliminarPedido' pedido.numero_pedido %}" >x</a></button></td>
+                            <td><button class="btn btn-warning btnEditar"><a href="{% url 'editarPedido' pedido.numero_pedido %}" >Editar</a></button></td>
+                            <td><button class="btn btn-light btnNuevoPedido"><a href="{% url 'pedidosFormulario' %}" >Nuevo</a></button></td>
                         </tr>
                         
-                    {% endfor%}
-                    
+                    {% endfor%}  
                 </tr>
+                                
             </table>
-            <div class="formPedidoFormulario">
+            
                 {% block pedidosFormulario %}
                 {% endblock %} 
             </div>
             
             <div class="formGetPedido">
+                <p></p>
                 {% block getPedido %}
                 {% endblock %}
             </div>

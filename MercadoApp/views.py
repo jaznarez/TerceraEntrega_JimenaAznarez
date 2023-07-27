@@ -16,39 +16,45 @@ def inicio(request):
     return render(request, "MercadoApp/inicio.html", {"avatar":avatar}) #mandamos el avatar en manera de diccionario para poder acceder en la web   
 
 def cliente(request):
+    avatar = getavatar(request)
     Clientes = Cliente.objects.all() #pido toda la informacion que tenga Cliente alojada en su base de datos
-    return render(request, "MercadoApp/Cliente.html", {"Clientes": Clientes}) #genera una lista con los datos de todos los clientes, y que podemos usar luego en el template Clientes
+    return render(request, "MercadoApp/Cliente.html", {"Clientes":Clientes, "avatar":avatar}) #genera una lista con los datos de todos los clientes, y que podemos usar luego en el template Clientes
 
 def Productos(request):
-    return render(request, "MercadoApp/Productos.html")
+    avatar = getavatar(request)
+    #Producto = Productos.objects.all()
+    return render(request, "MercadoApp/Productos.html", {"avatar":avatar})
 
 def pedidos(request):
+    avatar = getavatar(request)
     Pedido = Pedidos.objects.all()
-    return render(request, "MercadoApp/Pedidos.html", {"Pedidos": Pedido})
+    return render(request, "MercadoApp/Pedidos.html", {"Pedidos":Pedido, "avatar":avatar})
 
 def clienteFormulario(request):
     Clientes = Cliente.objects.all() #pido toda la informacion que tenga Cliente alojada en su base de datos
+    avatar = getavatar(request)
     #return render(request, "MercadoApp/Cliente.html", {"Clientes": Clientes}) #genera una lista con los datos de todos los clientes, y que podemos usar luego en el template Clientes
     if request.method =="POST":
         cliente = Cliente(nombre=request.POST["nombre"], apellido=request.POST["apellido"],email=request.POST["email"],telefono=request.POST["telefono"],edad=request.POST["edad"])
         cliente.save()
         miFormulario = formClienteFormulario() #para que se limpien los datos del formulario una vez que ya cargo un cliente
-        return render(request, "MercadoApp/clienteFormulario.html", {"miFormulario":miFormulario, "Clientes": Clientes})
+        return render(request, "MercadoApp/clienteFormulario.html", {"miFormulario":miFormulario, "Clientes": Clientes, "avatar":avatar})
     else:
         miFormulario = formClienteFormulario()
-    return render(request, "MercadoApp/clienteFormulario.html", {"miFormulario":miFormulario, "Clientes": Clientes})#uso un diccionario para crear la variable que necesita clienteForumulario para crear el form para renderizar la pantalla.
+    return render(request, "MercadoApp/clienteFormulario.html", {"miFormulario":miFormulario, "Clientes": Clientes, "avatar":avatar})#uso un diccionario para crear la variable que necesita clienteForumulario para crear el form para renderizar la pantalla.
 
 def pedidosFormulario(request):
     Pedido = Pedidos.objects.all() #pido toda la informacion que tenga Pedidos alojada en su base de datos
+    avatar = getavatar(request)
     #return render(request, "MercadoApp/Cliente.html", {"Clientes": Clientes}) #genera una lista con los datos de todos los clientes, y que podemos usar luego en el template Clientes
     if request.method =="POST":
         pedido = Pedidos(numero_pedido=request.POST["numero_pedido"], nombre_producto=request.POST["nombre_producto"], categoria_producto=request.POST["categoria_producto"],cantidad=request.POST["cantidad"], fecha_entrega=request.POST["fecha_entrega"])
         pedido.save()
         miFormulario = formPedidoFormulario() #para que se limpien los datos del formulario una vez que ya cargo un pedido
-        return render(request, "MercadoApp/pedidosFormulario.html", {"miFormulario":miFormulario, "Pedido": Pedido})
+        return render(request, "MercadoApp/pedidosFormulario.html", {"miFormulario":miFormulario, "Pedido": Pedido, "avatar":avatar})
     else:
         miFormulario = formPedidoFormulario()
-    return render(request, "MercadoApp/pedidosFormulario.html", {"miFormulario":miFormulario, "Pedido": Pedido})#uso un diccionario para crear la variable que necesita clienteForumulario para crear el form para renderizar la pantalla.
+    return render(request, "MercadoApp/pedidosFormulario.html", {"miFormulario":miFormulario, "Pedido": Pedido, "avatar":avatar})#uso un diccionario para crear la variable que necesita clienteForumulario para crear el form para renderizar la pantalla.
 
 
     """if request.method =="POST":#metodo POST se relaciona a un forumlario que se genera
@@ -62,6 +68,9 @@ def getCliente(request):
 
 def getPedido(request):
     return render(request, "MercadoApp/getPedido.html")
+
+#def getProducto(request):
+#    return render(request, "MercadoApp/Productos.html")
 
 def buscarCliente(request):
     if request.GET["email"]:
@@ -142,13 +151,9 @@ def registro(request):
     if request.method == "POST":
         userCreate = UserCreationForm(request.POST) #CREA INSTANCIA DE FORMULARIO EN BASE AL FORMULARIO QUE TENEMOS CREADO
         if userCreate is not None:
-
             userCreate.save()
-
             return render(request, 'MercadoApp/login.html')
-
     else:
-
         return render(request, 'MercadoApp/registro.html')
 
 @login_required
@@ -187,6 +192,7 @@ def changePassword(request):
         return render(request, "MercadoApp/Perfil/changePassword.html", {"form": form})
 
 def editAvatar(request):
+    avatar = getavatar(request)
     if request.method == "POST":
         form = AvatarForm(request.POST, request.FILES)
         print(form)
@@ -207,7 +213,7 @@ def editAvatar(request):
             form = AvatarForm()
         except:
             form = AvatarForm()
-    return render(request, "MercadoApp/Perfil/avatar.html", {"form": form})
+    return render(request, "MercadoApp/Perfil/avatar.html", {"form": form, "avatar": avatar})
     
 def getavatar(request):
     avatar = Avatar.objects.filter(user=request.user.id) #filter, va a buscar algo especifico, va a traer el avatar que le pertenece a ese usuario

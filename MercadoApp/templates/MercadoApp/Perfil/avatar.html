@@ -3,6 +3,7 @@
 {% block contenidoQueCambia %}
     <h3>Avatar</h3>
     <h5>{{user.username}}</h5>
+    <!--<img src="{{perfil.avatar.url}}" atl="Avatar del usuario">-->
 
     <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
         <table>
