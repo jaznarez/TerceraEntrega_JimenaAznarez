@@ -6,11 +6,11 @@ usamos una API de django donde el formulario ya viene predeterminado-->
 
         {% block pedidosFormulario %}
     
-        <form action="/MercadoApp/editarPedido/{{numero_pedido}}" method="post"> {% csrf_token %}
+        <form action="/MercadoApp/editarPedido/{{pedido.numero_pedido}}" method="post"> {% csrf_token %}
             <table>
                 {{ miFormulario.as_table }}
             </table>
-            <input class="btn btn-primary" type="submit" value="Enviar">
+            <input class="btn btn-primary" type="submit" value="Enviar"><a href="{% url 'pedidosFormulario' %}"></a>
         </form>
         {% endblock %}
 </div>

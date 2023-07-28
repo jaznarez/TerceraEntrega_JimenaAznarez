@@ -73,22 +73,25 @@ def getPedido(request):
 #    return render(request, "MercadoApp/Productos.html")
 
 def buscarCliente(request):
+    avatar = getavatar(request)
     if request.GET["email"]:
         email = request.GET["email"]
         cliente = Cliente.objects.filter(email = email)
-        return render(request, "MercadoApp/getCliente.html", {"cliente": cliente})
+        return render(request, "MercadoApp/getCliente.html", {"cliente": cliente, "avatar":avatar})
     else:
         respuesta ="No se enviaron datos"
     return HTTPResponse(respuesta)
 
 def eliminarCliente(request, nombre_cliente):
+    avatar = getavatar(request)
     cliente = Cliente.objects.get(nombre=nombre_cliente)
     cliente.delete()
     miFormulario = formClienteFormulario()
     Clientes = Cliente.objects.all()
-    return render(request, "MercadoApp/clienteFormulario.html", {"miFormulario":miFormulario, "Clientes": Clientes})
+    return render(request, "MercadoApp/clienteFormulario.html", {"miFormulario":miFormulario, "Clientes": Clientes, "avatar":avatar})
 
 def editarCliente(request, nombre_cliente):
+    avatar = getavatar(request)
     cliente = Cliente.objects.get(nombre= nombre_cliente)
     if request.method == "POST" :#validar si es un cliente valido
         miFormulario = formClienteFormulario(request.POST)
@@ -98,28 +101,32 @@ def editarCliente(request, nombre_cliente):
             cliente.apellido = data["apellido"]
             cliente.email = data["email"]
             cliente.telefono = data["telefono"]
+            cliente.edad = data["edad"]
             cliente.save()
             miFormulario = formClienteFormulario()
             Clientes = Cliente.objects.all()
-            return render(request, "MercadoApp/clienteFormulario.html", {"miFormulario":miFormulario, "Clientes": Clientes})
+            return render(request, "MercadoApp/clienteFormulario.html", {"miFormulario":miFormulario, "Clientes": Clientes, "avatar":avatar})
 
     else:
-        miFormulario = formClienteFormulario()
-    return render(request, "MercadoApp/editarCliente.html", {"miFormulario":miFormulario})
+        miFormulario = formClienteFormulario(initial={"nombre": cliente.nombre, "apellido": cliente.apellido, "email":cliente.email, "telefono": cliente.telefono, "edad":cliente.edad})
+    return render(request, "MercadoApp/editarCliente.html", {"miFormulario":miFormulario, "avatar":avatar})
 
 def eliminarPedido(request, numero_pedido):
+    avatar = getavatar(request)
     pedido = Pedidos.objects.get(numero_pedido=numero_pedido)
     pedido.delete()
     miFormulario = formPedidoFormulario()
     Pedido = Pedidos.objects.all()
-    return render(request, "MercadoApp/pedidosFormulario.html", {"miFormulario":miFormulario, "Pedidos": Pedido})
+    return render(request, "MercadoApp/pedidosFormulario.html", {"miFormulario":miFormulario, "Pedidos": Pedido, "avatar":avatar})
 
 def editarPedido(request, numero_pedido):
+    avatar = getavatar(request)
     pedido = Pedidos.objects.get(numero_pedido= numero_pedido)
     if request.method == "POST" :#validar si es un pedido valido
         miFormulario = formPedidoFormulario(request.POST)
         if miFormulario.is_valid:
             data = miFormulario.cleaned_data
+            pedido.numero_pedido = data["numero_pedido"]
             pedido.nombre_producto = data["nombre_producto"]
             pedido.categoria_producto = data["categoria_producto"]
             pedido.cantidad = data["cantidad"]
@@ -127,11 +134,11 @@ def editarPedido(request, numero_pedido):
             pedido.save()
             miFormulario = formPedidoFormulario()
             Pedido = Pedidos.objects.all()
-            return render(request, "MercadoApp/pedidosFormulario.html", {"miFormulario":miFormulario, "Pedidos": Pedido})
+            return render(request, "MercadoApp/pedidosFormulario.html", {"miFormulario":miFormulario, "Pedidos": Pedido, "avatar":avatar})
 
     else:
-        miFormulario = formPedidoFormulario()
-    return render(request, "MercadoApp/editarPedido.html", {"miFormulario":miFormulario})
+        miFormulario = formPedidoFormulario(initial={"numero_pedido":pedido.numero_pedido, "nombre_producto": pedido.nombre_producto, "categoria_producto": pedido.categoria_producto, "cantidad":pedido.cantidad, "fecha_entrega": pedido.fecha_entrega})
+    return render(request, "MercadoApp/editarPedido.html", {"miFormulario":miFormulario, "pedido":numero_pedido, "avatar":avatar})
 
 #def leerClientes(request):
 
