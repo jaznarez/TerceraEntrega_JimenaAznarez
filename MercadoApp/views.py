@@ -8,6 +8,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
 from django.contrib.auth.decorators import login_required #sirve para pedir el login obligatorio, si no la pagina no funciona. se escribe @login_required arriba de cada accion que querramos necesite login
 from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 
 
 @login_required
@@ -121,21 +122,21 @@ def eliminarPedido(request, numero_pedido):
 
 def editarPedido(request, numero_pedido):
     avatar = getavatar(request)
-    pedido = Pedidos.objects.get(numero_pedido= numero_pedido)
+    pedido = get_object_or_404(Pedidos,numero_pedido=numero_pedido)#Pedidos.objects.get(numero_pedido= numero_pedido)
     if request.method == "POST" :#validar si es un pedido valido
         miFormulario = formPedidoFormulario(request.POST)
         if miFormulario.is_valid:
-            data = miFormulario.cleaned_data
+            data = miFormulario.cleaned_data()
             pedido.numero_pedido = data["numero_pedido"]
             pedido.nombre_producto = data["nombre_producto"]
             pedido.categoria_producto = data["categoria_producto"]
             pedido.cantidad = data["cantidad"]
             pedido.fecha_entrega = data["fecha_entrega"]
             pedido.save()
-            miFormulario = formPedidoFormulario()
-            Pedido = Pedidos.objects.all()
-            return render(request, "MercadoApp/pedidosFormulario.html", {"miFormulario":miFormulario, "Pedidos": Pedido, "avatar":avatar})
-
+            #miFormulario = formPedidoFormulario()
+            #Pedido = Pedidos.objects.all()
+            #return render(request, "MercadoApp/pedidosFormulario.html", {"miFormulario":miFormulario, "Pedidos": Pedido, "avatar":avatar})
+            return redirect('Pedidos')
     else:
         miFormulario = formPedidoFormulario(initial={"numero_pedido":pedido.numero_pedido, "nombre_producto": pedido.nombre_producto, "categoria_producto": pedido.categoria_producto, "cantidad":pedido.cantidad, "fecha_entrega": pedido.fecha_entrega})
     return render(request, "MercadoApp/editarPedido.html", {"miFormulario":miFormulario, "pedido":numero_pedido, "avatar":avatar})
@@ -159,7 +160,7 @@ def registro(request):
         userCreate = UserCreationForm(request.POST) #CREA INSTANCIA DE FORMULARIO EN BASE AL FORMULARIO QUE TENEMOS CREADO
         if userCreate is not None:
             userCreate.save()
-            return render(request, 'MercadoApp/login.html')
+            return redirect('login')
     else:
         return render(request, 'MercadoApp/registro.html')
 
