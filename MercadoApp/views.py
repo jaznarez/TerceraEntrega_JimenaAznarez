@@ -52,7 +52,8 @@ def pedidosFormulario(request):
         pedido = Pedidos(numero_pedido=request.POST["numero_pedido"], nombre_producto=request.POST["nombre_producto"], categoria_producto=request.POST["categoria_producto"],cantidad=request.POST["cantidad"], fecha_entrega=request.POST["fecha_entrega"])
         pedido.save()
         miFormulario = formPedidoFormulario() #para que se limpien los datos del formulario una vez que ya cargo un pedido
-        return render(request, "MercadoApp/pedidosFormulario.html", {"miFormulario":miFormulario, "Pedido": Pedido, "avatar":avatar})
+        return redirect('Pedidos')
+        #return render(request, "MercadoApp/pedidosFormulario.html", {"miFormulario":miFormulario, "Pedido": Pedido, "avatar":avatar})
     else:
         miFormulario = formPedidoFormulario()
     return render(request, "MercadoApp/pedidosFormulario.html", {"miFormulario":miFormulario, "Pedido": Pedido, "avatar":avatar})#uso un diccionario para crear la variable que necesita clienteForumulario para crear el form para renderizar la pantalla.
@@ -93,10 +94,10 @@ def eliminarCliente(request, nombre_cliente):
 
 def editarCliente(request, nombre_cliente):
     avatar = getavatar(request)
-    cliente = Cliente.objects.get(nombre= nombre_cliente)
+    cliente = get_object_or_404(Cliente, nombre= nombre_cliente)
     if request.method == "POST" :#validar si es un cliente valido
         miFormulario = formClienteFormulario(request.POST)
-        if miFormulario.is_valid:
+        if miFormulario.is_valid():
             data = miFormulario.cleaned_data
             cliente.nombre = data["nombre"]
             cliente.apellido = data["apellido"]
@@ -104,13 +105,13 @@ def editarCliente(request, nombre_cliente):
             cliente.telefono = data["telefono"]
             cliente.edad = data["edad"]
             cliente.save()
-            miFormulario = formClienteFormulario()
-            Clientes = Cliente.objects.all()
-            return render(request, "MercadoApp/clienteFormulario.html", {"miFormulario":miFormulario, "Clientes": Clientes, "avatar":avatar})
-
+            #miFormulario = formClienteFormulario()
+            #Clientes = Cliente.objects.all()
+            #return render(request, "MercadoApp/clienteFormulario.html", {"miFormulario":miFormulario, "Clientes": Clientes, "avatar":avatar})
+            return redirect('Cliente')
     else:
         miFormulario = formClienteFormulario(initial={"nombre": cliente.nombre, "apellido": cliente.apellido, "email":cliente.email, "telefono": cliente.telefono, "edad":cliente.edad})
-    return render(request, "MercadoApp/editarCliente.html", {"miFormulario":miFormulario, "avatar":avatar})
+    return render(request, "MercadoApp/editarCliente.html", {"miFormulario":miFormulario, "cliente": nombre_cliente, "avatar":avatar})
 
 def eliminarPedido(request, numero_pedido):
     avatar = getavatar(request)
@@ -125,8 +126,8 @@ def editarPedido(request, numero_pedido):
     pedido = get_object_or_404(Pedidos,numero_pedido=numero_pedido)#Pedidos.objects.get(numero_pedido= numero_pedido)
     if request.method == "POST" :#validar si es un pedido valido
         miFormulario = formPedidoFormulario(request.POST)
-        if miFormulario.is_valid:
-            data = miFormulario.cleaned_data()
+        if miFormulario.is_valid():
+            data = miFormulario.cleaned_data
             pedido.numero_pedido = data["numero_pedido"]
             pedido.nombre_producto = data["nombre_producto"]
             pedido.categoria_producto = data["categoria_producto"]
