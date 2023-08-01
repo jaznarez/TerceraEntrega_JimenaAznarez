@@ -12,7 +12,7 @@ urlpatterns = [
     path("buscarCliente/", buscarCliente, name="buscarCliente"),
     path("login/", loginWeb, name="login"),
     path("registro/", registro, name="registro"),
-    path("Logout/", LogoutView.as_view(template_name = "MercadoApp/login.html"), name="Logout"),
+    path("Logout/", LogoutView.as_view(next_page = 'login'), name="Logout"),
     path("Perfil/", perfilview, name="perfil"),
     path("Perfil/editarPerfil/", editarPerfil, name="editarPerfil"),
     path("Perfil/changePassword/", changePassword, name="changePassword"),

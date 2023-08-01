@@ -161,6 +161,7 @@ def loginWeb(request): #ojo no puede llamarse solo login porque ya estoy importa
         user = authenticate(username=request.POST["user"], password=request.POST["password"])
         if user is not None:
             login(request, user)
+            #return redirect('inicio')
             return render(request, "MercadoApp/inicio.html")
         else:
             return render(request, "MercadoApp/login.html", {"error": "Usuario o contraseña incorrectos"})
