@@ -10,7 +10,11 @@
     
         {% block contenidoQueCambia %}
             <div class="formPedidoFormulario">
-            <p>Pedidos</p>
+            <table id="buscarPedido">
+                <th><p>Pedidos</p>
+                <th><button class="btn btn-light btnNuevoPedido"><a href="{% url 'getPedido' %}">Buscar Pedido</a></button></th>
+                
+            </table>
             <table id="tableInfoPedidos">
                 <tr id="tituloTablaPedidos">
                     <th>Numero Pedido</th>
@@ -18,6 +22,7 @@
                     <th>Categoria </th>
                     <th>Cantidad   </th>
                     <th>Fecha Entrega</th>
+                    
                     
 
                 </tr>

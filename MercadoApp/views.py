@@ -68,7 +68,7 @@ def pedidosFormulario(request):
 def getCliente(request):
     return render(request, "MercadoApp/getCliente.html")
 
-def getPedido(request):
+def getPedido(request): 
     return render(request, "MercadoApp/getPedido.html")
 
 #def getProducto(request):
@@ -112,6 +112,17 @@ def editarCliente(request, nombre_cliente):
     else:
         miFormulario = formClienteFormulario(initial={"nombre": cliente.nombre, "apellido": cliente.apellido, "email":cliente.email, "telefono": cliente.telefono, "edad":cliente.edad})
     return render(request, "MercadoApp/editarCliente.html", {"miFormulario":miFormulario, "cliente": nombre_cliente, "avatar":avatar})
+
+def buscarPedido(request):
+    avatar = getavatar(request)
+    if request.GET["numero_pedido"]:
+        numero = request.GET["numero_pedido"]
+        pedido = Pedidos.objects.filter(numero_pedido = numero)
+        return redirect('getPedido')
+        #return render(request, "MercadoApp/getPedido.html", {"pedido": pedido, "avatar":avatar})
+    else:
+        respuesta ="No se enviaron datos"
+    return HTTPResponse(respuesta)
 
 def eliminarPedido(request, numero_pedido):
     avatar = getavatar(request)

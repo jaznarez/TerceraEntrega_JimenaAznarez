@@ -89,6 +89,10 @@ body{
     padding-right: 120px;
 }
 
+#buscarPedido tr th{
+    padding-right: 400px;
+}
+
 .btnEliminar a{
     border-radius: 15px !important;
     color: white !important;

@@ -23,5 +23,5 @@ urlpatterns = [
     path("eliminarPedido/<numero_pedido>", eliminarPedido, name="eliminarPedido"),
     path("editarPedido/<numero_pedido>", editarPedido, name="editarPedido"),
     path("getPedido/", getPedido, name="getPedido"),
-
+    path("buscarPedido/", buscarPedido, name="buscarPedido"),
 ]
