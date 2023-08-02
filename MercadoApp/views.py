@@ -24,15 +24,18 @@ def cliente(request):
 def productos(request):
     avatar = getavatar(request)
     Producto = Productos.objects.all()
+    comments = Comment.objects.all()
     if request.method == "POST":
         post = CommentForm(request.POST)
         if post.is_valid():
             data = post.cleaned_data
             new_comment = Comment(text=data["text"], author=request.user.username)
             new_comment.save()
-        return redirect('Productos')
+            miFormulario=CommentForm()
+        #return redirect('Productos')
+        return render(request, "MercadoApp/Productos.html", {"avatar":avatar, "comments": comments, "new_comment": new_comment,"form":miFormulario })
     miFormulario=CommentForm()
-    return render(request, "MercadoApp/Productos.html", {"avatar":avatar, "form":miFormulario})
+    return render(request, "MercadoApp/Productos.html", {"avatar":avatar, "comments": comments, "form":miFormulario})
 
 def pedidos(request):
     avatar = getavatar(request)
