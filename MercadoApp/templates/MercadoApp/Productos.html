@@ -5,26 +5,28 @@
     
         {% block contenidoQueCambia %}
         <div class="componenteEntregables">
-            <p>Elige tus productos...</p>
-            
-            <div class="card" style="width: 18rem;" float="left">
-                <img src="{% static 'MercadoApp/images/empanadas.jpg' %}" class="card-img-top" alt=""/>
+            <h4>Elige tus productos...</h4>
+            <table>
+            <th><div class="card" style="width: 18rem; height: 22rem;" float="left">
+                <img src="{% static 'MercadoApp/images/empanadas.jpg' %}" class="card-img-top" alt="" style="height: 9rem;"/>
                 <div class="card-body">
-                    <h5 class="card-title">Frescos</h5>
-                    <p class="card-text"> Menú del día </p> <a href="{% url 'Pedidos' %}" class="btn btn-primary">Comprar (No hay página aún)</a>
-                    <p class="card-text"> Empanadas </p> <a href="{% url 'Pedidos' %}" class="btn btn-primary">Comprar (No hay página aún)</a>
+                    <h4 class="card-title">Frescos</h4>
+                    <p class="card-text"> Menú del día ............ $ 200 </p> <a href="{% url 'Pedidos' %}" class="btn btn-primary">Comprar</a>
+                    <p class="card-text"> Empanadas ............. $  60 c/u </p> <a href="{% url 'Pedidos' %}" class="btn btn-primary">Comprar</a>
                     
                 </div>
-            </div>
-            <div class="card" style="width: 18rem;">
-                <img src="{% static 'MercadoApp/images/pizza.jpg' %}" class="card-img-top" alt="...">
+            </div></th>
+            <th><div class="card" style="width: 18rem; height: 22rem;">
+                <img src="{% static 'MercadoApp/images/pizza.jpg' %}" class="card-img-top" alt="..." style="height: 9rem;">
                 <div class="card-body">
-                    <h5 class="card-title">Congelados</h5>
-                    <p class="card-text">Tartas</p>
-                    <a href="#" class="btn btn-primary">Comprar</a>
+                    <h4 class="card-title">Congelados</h4>
+                    <p class="card-text">Tartas ............... $ 400 </p><a href="{% url 'Pedidos' %}" class="btn btn-primary">Comprar</a>
+                    <p class="card-text">Empanadas ....... $ 40 c/u</p><a href="{% url 'Pedidos' %}" class="btn btn-primary">Comprar</a>
+                    
                     
                 </div>
-            </div>
+            </div></th>
+            </table>
                 
             
         </div>

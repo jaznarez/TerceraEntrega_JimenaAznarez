@@ -131,6 +131,7 @@ def eliminarPedido(request, numero_pedido):
     Pedido = Pedidos.objects.all()
     return render(request, "MercadoApp/pedidosFormulario.html", {"miFormulario":miFormulario, "Pedidos": Pedido, "avatar":avatar})
 
+@login_required
 def editarPedido(request, numero_pedido):
     avatar = getavatar(request)
     pedido = get_object_or_404(Pedidos,numero_pedido=numero_pedido)#Pedidos.objects.get(numero_pedido= numero_pedido)
@@ -211,6 +212,7 @@ def changePassword(request):
         form = ChangePasswordForm(user = usuario)
         return render(request, "MercadoApp/Perfil/changePassword.html", {"form": form})
 
+@login_required
 def editAvatar(request):
     avatar = getavatar(request)
     if request.method == "POST":
@@ -234,7 +236,7 @@ def editAvatar(request):
         except:
             form = AvatarForm()
     return render(request, "MercadoApp/Perfil/avatar.html", {"form": form, "avatar": avatar})
-    
+@login_required    
 def getavatar(request):
     avatar = Avatar.objects.filter(user=request.user.id) #filter, va a buscar algo especifico, va a traer el avatar que le pertenece a ese usuario
     try:
