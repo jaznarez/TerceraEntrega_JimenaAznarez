@@ -28,12 +28,26 @@
                 
             
         </div>
+
+        <hr>
+        {% for comment in post.comments.all %}
+            <div class="comment">
+                <div class="date">{{ comment.created_date }}</div>
+                <strong>{{ comment.author }}</strong>
+                <p>{{ comment.text|linebreaks }}</p>
+            </div>
+        {% empty %}
+            <p>Dejanos tus comentarios :)</p>
+        {% endfor %}
         
-        <h4>Dejanos tus comentarios</h4>
-        <form method="POST" class="post-form">{% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Send</button>
-        </form>
-        
+        <form action="/MercadoApp/Productos/" method="post"> {% csrf_token %}
+            <!--table>
+                {{ miFormulario.as_table }}
+            </table-->
+            
+            <input placeholder="Post" type = "text" name="text" required>
+            
+            <input class="btn btn-primary" type = "submit" value="Enviar">
+        </form>   
         {% endblock %}
 </div>

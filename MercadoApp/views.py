@@ -243,18 +243,33 @@ def getavatar(request):
         avatar = None
     return avatar
 
-def add_comment(request, nombre):
-    post = get_object_or_404(Productos, nombre= nombre)
-    if request.method == "POST":
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.post = post
-            comment.save()
-            return redirect('Productos', nombre=nombre)
-    else:
-        form = CommentForm()
-    return render(request, 'blog/add_comment_to_post.html', {'form': form})
+def add_comment(request):
+    Post=Comment.objects.all()
+    if request == "POST":
+        post = Comment(post=request.POST["post"])
+        post.save()
+        miFormulario = CommentForm()
+        return render(request, "MercadoApp/Productos.html", {"miFormulario":miFormulario, "Post":post})
+    else: 
+        miFormulario= CommentForm()
+    return render(request, "MercadoApp/Productos.html")
+
+
+
+
+
+#def add_comment(request, nombre):
+#    post = get_object_or_404(Productos, nombre= nombre)
+#    if request.method == "POST":
+#        form = CommentForm(request.POST)
+#        if form.is_valid():
+#            comment = form.save(commit=False)
+#            comment.post = post
+#            comment.save()
+#            return redirect('Productos', nombre=nombre)
+#    else:
+#        form = CommentForm()
+#    return render(request, 'Productos', {'form': form})
 
 #def getPedidos(request): #OJO! comenté la función Pedidos que está mas arriba
 #    pedido = Pedidos.objects.get()
