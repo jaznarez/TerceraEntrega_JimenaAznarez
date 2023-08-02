@@ -3,7 +3,7 @@ from turtle import home
 from django.template import loader
 from django.shortcuts import render, redirect
 from MercadoApp.models import *
-from MercadoApp.forms import formClienteFormulario, UserEditForm, ChangePasswordForm, AvatarForm, formPedidoFormulario
+from MercadoApp.forms import formClienteFormulario, UserEditForm, ChangePasswordForm, AvatarForm, formPedidoFormulario, CommentForm
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
 from django.contrib.auth.decorators import login_required #sirve para pedir el login obligatorio, si no la pagina no funciona. se escribe @login_required arriba de cada accion que querramos necesite login
@@ -118,8 +118,7 @@ def buscarPedido(request):
     if request.GET["numero_pedido"]:
         numero = request.GET["numero_pedido"]
         pedido = Pedidos.objects.filter(numero_pedido = numero)
-        return redirect('getPedido')
-        #return render(request, "MercadoApp/getPedido.html", {"pedido": pedido, "avatar":avatar})
+        return render(request, "MercadoApp/getPedido.html", {"pedido": pedido, "avatar":avatar})
     else:
         respuesta ="No se enviaron datos"
     return HTTPResponse(respuesta)
@@ -243,6 +242,19 @@ def getavatar(request):
     except:
         avatar = None
     return avatar
+
+def add_comment(request, nombre):
+    post = get_object_or_404(Productos, nombre= nombre)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+            return redirect('Productos', {"nombre":nombre})
+    else:
+        form = CommentForm()
+    return render(request, 'blog/add_comment_to_post.html', {'form': form})
 
 #def getPedidos(request): #OJO! comenté la función Pedidos que está mas arriba
 #    pedido = Pedidos.objects.get()

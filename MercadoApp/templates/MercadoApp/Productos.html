@@ -2,10 +2,12 @@
     {% extends "MercadoApp/inicio.html" %}
     {% load static %}
     
+    
         {% block contenidoQueCambia %}
         <div class="componenteEntregables">
             <p>Elige tus productos...</p>
-            <div class="card" style="width: 18rem;" float="left">  
+            
+            <div class="card" style="width: 18rem;" float="left">
                 <img src="{% static 'MercadoApp/images/empanadas.jpg' %}" class="card-img-top" alt=""/>
                 <div class="card-body">
                     <h5 class="card-title">Frescos</h5>
@@ -23,6 +25,18 @@
                     
                 </div>
             </div>
+                
+            
         </div>
+        
+        <h1>New comment</h1>
+        <form method="POST" class="post-form">{% csrf_token %}
+            {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+        
+
+
+
         {% endblock %}
 </div>
