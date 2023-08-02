@@ -10,7 +10,11 @@
     
         {% block contenidoQueCambia %}
             <div class="formClienteFormulario">
-            <p>Clientes Disponibles</p>
+            <table id="buscarPedido">
+                <th><p>Clientes Disponibles</p></th>
+                <th><button class="btn btn-light btnNuevoCliente"><a href="{% url 'clienteFormulario' %}" >Nuevo</a></button></th>
+            </table>
+            
             <table id="tableInfoClientes">
                 <tr id="tituloTablaClientes">
                     <th>Nombre</th>

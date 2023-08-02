@@ -12,6 +12,7 @@
             <div class="formPedidoFormulario">
             <table id="buscarPedido">
                 <th><p>Pedidos</p>
+                <th><button class="btn btn-light btnNuevoPedido"><a href="{% url 'pedidosFormulario' %}" >Nuevo</a></button></th>
                 <th><button class="btn btn-light btnNuevoPedido"><a href="{% url 'getPedido' %}">Buscar Pedido</a></button></th>
                 
             </table>
@@ -22,6 +23,7 @@
                     <th>Categoria </th>
                     <th>Cantidad   </th>
                     <th>Fecha Entrega</th>
+                    
                     
                     
 
@@ -53,5 +55,7 @@
                 {% block getPedido %}
                 {% endblock %}
             </div>
+
+
         {% endblock %}
 </div>

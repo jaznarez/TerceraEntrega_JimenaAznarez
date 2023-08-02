@@ -98,6 +98,7 @@ def buscarCliente(request):
 def eliminarCliente(request, nombre_cliente):
     avatar = getavatar(request)
     cliente = Cliente.objects.get(nombre=nombre_cliente)
+    #cliente = Cliente.objects.get(email=email)
     cliente.delete()
     miFormulario = formClienteFormulario()
     Clientes = Cliente.objects.all()

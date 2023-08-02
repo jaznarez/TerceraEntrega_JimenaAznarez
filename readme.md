@@ -6,6 +6,11 @@ Mercado Online es el sitio donde puedes comprar comida pronta, casera y delicios
 
 En la capeta llamada Imagenes se encuentran las capturas de pantalla de las pruebas de algunas funcionalidades.
 
+Links para los videos:
+Video parte 1: https://youtu.be/ToQr-yDCj2s
+Video parte 2: https://youtu.be/OKaGa_WVypM
+
+
 # Funcionalidades
 
 1. http://127.0.0.1:8000/MercadoApp/registro/ permitirá al cliente crear un usuario y contraseña para acceder al sitio y poder realizar los pedidos.
@@ -30,8 +35,6 @@ En la capeta llamada Imagenes se encuentran las capturas de pantalla de las prue
 
 9. http://127.0.0.1:8000/MercadoApp/Logout/ permite salir de la sesión.
 
-10. http://127.0.0.1:8000/admin/ permite el acceso a la administración del sitio.
+10. http://127.0.0.1:8000/Productos/ está la posibilidad de escribir mensajes, recomendaciones o consultas.
 
-Cuando quiero agregar un nuevo pedido, me desaparecen los pedidos anteriores.
-Cuando voy a editar clientes o pedidos, queda el titulo de la url anterior.
-Cuando doy enviar en editar clientes, da error.
+11. http://127.0.0.1:8000/admin/ permite ingresar a la administración del sitio.
