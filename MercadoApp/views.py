@@ -21,9 +21,9 @@ def cliente(request):
     Clientes = Cliente.objects.all() #pido toda la informacion que tenga Cliente alojada en su base de datos
     return render(request, "MercadoApp/Cliente.html", {"Clientes":Clientes, "avatar":avatar}) #genera una lista con los datos de todos los clientes, y que podemos usar luego en el template Clientes
 
-def Productos(request):
+def productos(request):
     avatar = getavatar(request)
-    #Producto = Productos.objects.all()
+    Producto = Productos.objects.all()
     return render(request, "MercadoApp/Productos.html", {"avatar":avatar})
 
 def pedidos(request):
@@ -71,8 +71,8 @@ def getCliente(request):
 def getPedido(request): 
     return render(request, "MercadoApp/getPedido.html")
 
-#def getProducto(request):
-#    return render(request, "MercadoApp/Productos.html")
+def getProducto(request):
+    return render(request, "MercadoApp/Productos.html")
 
 def buscarCliente(request):
     avatar = getavatar(request)
@@ -251,7 +251,7 @@ def add_comment(request, nombre):
             comment = form.save(commit=False)
             comment.post = post
             comment.save()
-            return redirect('Productos', {"nombre":nombre})
+            return redirect('Productos', nombre=nombre)
     else:
         form = CommentForm()
     return render(request, 'blog/add_comment_to_post.html', {'form': form})

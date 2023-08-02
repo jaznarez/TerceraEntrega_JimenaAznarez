@@ -16,19 +16,22 @@ En la capeta llamada Imagenes se encuentran las capturas de pantalla de las prue
 
 4. http://127.0.0.1:8000/MercadoApp/Productos/ el cliente podrá visualizar los productos disponibles cada día en cada una de las categorías, Frescos y Congelados. Al lado de cada producto aparece la opción de que ese producto sea agregado al pedido (funcionalidad que aún no está activa). 
 
-5. http://127.0.0.1:8000/MercadoApp/pedidosFormulario/ permitirá al cliente ingresar cada pedido.
+5. http://127.0.0.1:8000/MercadoApp/Pedidos/ muestra los pedidos existentes del cliente y permite:
+    5.1. ingresar un nuevo pedido, 
+    5.2. editarlos,  
+    5.3. eliminarlos, 
+    5.4. también tiene la opción de buscar un pedido ya existente, por numero de pedido.
 
-6. http://127.0.0.1:8000/MercadoApp/Pedidos/ permite ver el pedido del cliente y editarlo o eliminarlo si es necesario.
+6. http://127.0.0.1:8000/MercadoApp/Clientes/ funcionalidad para el dueño, quien vende, para poder ver la información de todos sus clientes. 
 
-7. http://127.0.0.1:8000/MercadoApp/Clientes/ funcionalidad para el dueño, quien vende, para poder ver la información de todos sus clientes. 
+7. http://127.0.0.1:8000/MercadoApp/clienteFormulario/ permite cargar toda la infomación sobre nuevos clientes, que luego se verá en Clientes.
 
-8. http://127.0.0.1:8000/MercadoApp/clienteFormulario/ permite cargar toda la infomación sobre nuevos clientes, que luego se verá en Clientes.
+8. http://127.0.0.1:8000/MercadoApp/Perfil/ es posible Editar el perfil de usuario y el Avatar.
 
-9. http://127.0.0.1:8000/MercadoApp/Perfil/ es posible Editar el perfil de usuario y el Avatar.
+9. http://127.0.0.1:8000/MercadoApp/Logout/ permite salir de la sesión.
 
-10. http://127.0.0.1:8000/MercadoApp/Logout/ permite salir de la sesión.
-
-11. http://127.0.0.1:8000/admin/ permite el acceso a la administración del sitio.
+10. http://127.0.0.1:8000/admin/ permite el acceso a la administración del sitio.
 
 Cuando quiero agregar un nuevo pedido, me desaparecen los pedidos anteriores.
 Cuando voy a editar clientes o pedidos, queda el titulo de la url anterior.
+Cuando doy enviar en editar clientes, da error.
