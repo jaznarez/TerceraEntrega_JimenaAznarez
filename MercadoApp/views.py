@@ -24,7 +24,15 @@ def cliente(request):
 def productos(request):
     avatar = getavatar(request)
     Producto = Productos.objects.all()
-    return render(request, "MercadoApp/Productos.html", {"avatar":avatar})
+    if request.method == "POST":
+        post = CommentForm(request.POST)
+        if post.is_valid():
+            data = post.cleaned_data
+            new_comment = Comment(text=data["text"], author=request.user.username)
+            new_comment.save()
+        return redirect('Productos')
+    miFormulario=CommentForm()
+    return render(request, "MercadoApp/Productos.html", {"avatar":avatar, "form":miFormulario})
 
 def pedidos(request):
     avatar = getavatar(request)
@@ -244,18 +252,6 @@ def getavatar(request):
     except:
         avatar = None
     return avatar
-
-def add_comment(request):
-    Post=Comment.objects.all()
-    if request == "POST":
-        post = Comment(post=request.POST["post"])
-        post.save()
-        miFormulario = CommentForm()
-        return render(request, "MercadoApp/Productos.html", {"miFormulario":miFormulario, "Post":post})
-    else: 
-        miFormulario= CommentForm()
-    return render(request, "MercadoApp/Productos.html")
-
 
 
 

@@ -1,3 +1,4 @@
+from datetime import datetime
 from time import timezone
 from django.db import models
 from django.contrib.auth.models import User
@@ -34,10 +35,9 @@ class Avatar(models.Model):
     image = models.ImageField(upload_to="avatares", null= True, blank=True)
 
 class Comment(models.Model):
-    post = models.ForeignKey('Productos', related_name='comments', on_delete=models.CASCADE)
     author = models.CharField(max_length=200)
     text = models.TextField()
-    created_date = models.DateTimeField(default=timezone)
+    created_date = models.DateTimeField(default=datetime.now())
     approved_comment = models.BooleanField(default=False)
 
     def approve(self):

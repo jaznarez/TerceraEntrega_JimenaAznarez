@@ -24,5 +24,4 @@ urlpatterns = [
     path("editarPedido/<numero_pedido>", editarPedido, name="editarPedido"),
     path("getPedido/", getPedido, name="getPedido"),
     path("buscarPedido/", buscarPedido, name="buscarPedido"),
-    path("add_comment/", add_comment, name="AddComment"),
 ]

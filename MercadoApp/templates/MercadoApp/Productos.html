@@ -42,13 +42,9 @@
             <p>Dejanos tus comentarios :)</p>
         {% endfor %}
         
-        <form action="/MercadoApp/Productos/" method="post"> {% csrf_token %}
-            <!--table>
-                {{ miFormulario.as_table }}
-            </table-->
+        <form method="post"> {% csrf_token %}
             
-            <input placeholder="Post" type = "text" name="text" required>
-            
+            {{ form.as_table }}
             <input class="btn btn-primary" type = "submit" value="Enviar">
         </form>   
         {% endblock %}
