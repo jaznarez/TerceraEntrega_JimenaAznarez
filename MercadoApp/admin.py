@@ -6,5 +6,5 @@ admin.site.register(Pedidos)
 admin.site.register(Productos)
 admin.site.register(Avatar)
 admin.site.register(Comment)
-#jimenaaznarez
+#mail
 #torrendell

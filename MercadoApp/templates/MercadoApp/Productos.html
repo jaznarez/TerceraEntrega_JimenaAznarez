@@ -11,19 +11,39 @@
                 <img src="{% static 'MercadoApp/images/empanadas.jpg' %}" class="card-img-top" alt="" style="height: 9rem;"/>
                 <div class="card-body">
                     <h4 class="card-title">Frescos</h4>
-                    <p class="card-text"> Menú del día ............ $ 200 </p> <a href="{% url 'Pedidos' %}" class="btn btn-primary">Comprar</a>
-                    <p class="card-text"> Empanadas ............. $  60 c/u </p> <a href="{% url 'Pedidos' %}" class="btn btn-primary">Comprar</a>
+                    <p class="card-text"> Menú del día ............ $ 200 </p> <!--<a href="{% url 'Pedidos' %}" class="btn btn-primary">Comprar</a>-->
+                    <p class="card-text"> Empanadas ............. $  60 c/u </p> <!--<a href="{% url 'Pedidos' %}" class="btn btn-primary">Comprar</a>-->
                     
                 </div>
             </div></th>
-            <th><div class="card" style="width: 18rem; height: 22rem;">
-                <img src="{% static 'MercadoApp/images/pizza.jpg' %}" class="card-img-top" alt="..." style="height: 9rem;">
+            <th><div class="card" style="width: 22rem; height: 28rem;">
+                <img src="{% static 'MercadoApp/images/pizza.jpg' %}" class="card-img-top" alt="..." style="height: 12rem;">
                 <div class="card-body">
                     <h4 class="card-title">Congelados</h4>
-                    <p class="card-text">Tartas ............... $ 400 </p><a href="{% url 'Pedidos' %}" class="btn btn-primary">Comprar</a>
-                    <p class="card-text">Empanadas ....... $ 40 c/u</p><a href="{% url 'Pedidos' %}" class="btn btn-primary">Comprar</a>
-                    
-                    
+                    <p class="card-text">Tartas ............... $ 400 </p>
+                    <form action="{% url 'pedidosFormulario' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="numero_pedido" value="1">
+                        <input type="hidden" name="nombre_producto" value="Tarta">
+                        <input type="hidden" name="categoria_producto" value="Congelados">
+                        <input type="number" name="cantidad" value="0">
+                        <input type="hidden" name="fecha_entrega" value="2023-08-15">
+                        <!--<input type="checkbox" name="preparado" value="True" required> Preparado-->
+                        <input type="hidden" name="entregado" value="False">
+                        <button class="btn btn-primary" type="submit">Comprar</button>
+                    </form>
+                    <p class="card-text">Empanadas ............. $ 40 </p>
+                    <form action="{% url 'pedidosFormulario' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="numero_pedido" value="1">
+                        <input type="hidden" name="nombre_producto" value="Empanadas">
+                        <input type="hidden" name="categoria_producto" value="Congelados">
+                        <input type="number" name="cantidad" value="0">
+                        <input type="hidden" name="fecha_entrega" value="2023-08-15">
+                        <!--<input type="checkbox" name="preparado" value="True" required> Preparado-->
+                        <input type="hidden" name="entregado" value="False">
+                        <button class="btn btn-primary" type="submit">Comprar</button>
+                    </form>
                 </div>
             </div></th>
             </table>
